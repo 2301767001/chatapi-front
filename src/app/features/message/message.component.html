@@ -1,0 +1,35 @@
+<h1>Chat  Channel</h1>
+
+<div> 
+    <h2>{{users}}</h2>
+    <button (click)="toggleUserList()">{{ showUserList ? 'Hide Users' : 'Show Users' }}</button>
+    <ul
+        *ngIf="showUserList">
+        <li *ngFor="let user of userCollection">
+            <button (click)="selectUser(user)" (contextmenu)="showContextMenu($event, user)">
+                {{ user.userName }}</button>
+    </ul>
+    <div *ngIf="selectedUser">
+        <h3>Selected user: {{ selectedUser.name }}</h3>
+    </div>
+
+    <div class="box">
+        <div class="messages" #messageContainer>
+            <p *ngFor="let message of messageQueue">
+                <strong>{{ message.sender }}:</strong> {{ message.text }}
+            </p>
+    
+        </div>
+        <div class="send-box">
+            <input type="text" [(ngModel)]="clientMessage" placeholder="Въведете съобщение...">
+            <button (click)="send()" class="send-btn">Send</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="showMenu" class="context-menu" [style.top]="menuY + 'px'" [style.left]="menuX + 'px'">
+    <button (click)="editUser(selectedUser)">Edit</button>
+    <button (click)="deleteUser(selectedUser)">Remove</button>
+</div>
+
+

@@ -1,0 +1,43 @@
+
+<div class="container">
+  <div class="chat-list mat-elevation-z5">
+   <div class="search-input">
+
+    <mat-form-field>
+      <input matInput placeholder="Search for users" 
+      [formAction]="$searchControler"
+      [matAutocomplete]="users" 
+      />
+    </mat-form-field>
+    <mat-autocomplete #users="matAutocomplete">
+      <mat-option > @for( userElement of userCollection; track userElement) { 
+        <div class="element">
+      <div {{userElement.userName}}></div>
+
+    </div>
+
+    } 
+        </mat-option>
+</mat-autocomplete>
+   
+   </div>
+  </div>
+  <div class="messages mat-elevation-z5">
+
+  </div>
+
+
+</div>
+
+<div>
+
+@for( userElement of userCollection; track userElement) { 
+  <div class="element">
+<div {{userElement.userName}}></div>
+  
+
+  </div>
+
+}
+
+
